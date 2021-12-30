@@ -1,8 +1,9 @@
-# Excel-Crawling
-透過Excel爬下三民書局暢銷榜的書名、作者、價格....等,並自動整理成表格
+# Excel-VBA爬蟲程式
+PROPOSE : 透過Excel爬下三民書局暢銷榜的書名、作者、價格....等,並自動整理成表格
+前置作業 : "檔案" → "選項" → "自訂功能區" : 勾選"開發人員" → 在工具列找到"開發人員" → "Visual Basic" → 新增一個"模組"
+                         → "信任中心" → "巨集設定" : 勾選"信任存取VBA專案物件模型" 
 
-
-
+程式碼 :
 
 Option Explicit
 #If Win64 Then
@@ -16,11 +17,12 @@ Private objIE As InternetExplorer
 
 Sub sanmin()
     '建立IE物件
-    Dim url, row   '宣告變數
+    Dim url, row, n   '宣告變數
     On Error Resume Next
     row = 1
+    For n = 1 To 2
 
-        url = "https://www.sanmin.com.tw/promote/top/?id=WBYY&vs=grid&item=1101220&pi=1&vs=list"  '三民書局
+        url = "https://www.sanmin.com.tw/promote/top/?id=WBYY&vs=grid&item=1101220&pi=" & n & "&vs=list" '三民書局
     
     Set objIE = New InternetExplorer
     
@@ -61,24 +63,22 @@ Sub sanmin()
         '確認書名在網頁的位置
             Worksheets(1).Cells(row, 4) = Price.innerText
             row = row + 1
+        
         Next
+        
+        Next n
     
     Set objIE = Nothing
     MsgBox "Done ！"
 End Sub
-
 
 -
 -
 -
 -
 ////也可以打成如下////
--
--
--  
--
-  
-  
+
+
 Option Explicit
 #If Win64 Then
   Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)                        '(3)
@@ -91,11 +91,12 @@ Private objIE As InternetExplorer
 
 Sub sanmin()
     '建立IE物件
-    Dim url, row   '宣告變數
+    Dim url, row, n   '宣告變數
     On Error Resume Next
     row = 1
+    For n = 1 To 2
 
-        url = "https://www.sanmin.com.tw/promote/top/?id=WBYY&vs=grid&item=1101220&pi=1&vs=list"  '三民書局
+        url = "https://www.sanmin.com.tw/promote/top/?id=WBYY&vs=grid&item=1101220&pi=" & n & "&vs=list" '三民書局
     
     Set objIE = New InternetExplorer
     
@@ -130,9 +131,9 @@ Sub sanmin()
             row = row + 1
 
         Next
+        
+        Next n
     
     Set objIE = Nothing
     MsgBox "Done ！"
 End Sub
-
-
