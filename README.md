@@ -68,14 +68,17 @@ Sub sanmin()
 End Sub
 
 
-
-
-
-
-////也可以打成////
-
-
-
+-
+-
+-
+-
+////也可以打成如下////
+-
+-
+-  
+-
+  
+  
 Option Explicit
 #If Win64 Then
   Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)                        '(3)
