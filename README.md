@@ -19,13 +19,22 @@ Option Explicit
 Private objIE As InternetExplorer
 
 Sub sanmin()
+
     '建立IE物件
-    Dim url, row, n  '宣告變數
+    
+    Dim url, row, n  
+    
+    '宣告變數
+    
     On Error Resume Next
     row = 1
-    For n = 1 To 2
+    For n = 1 To 2   
+    
+    '爬兩頁
 
-        url = "https://www.sanmin.com.tw/promote/top/?id=WBYY&vs=grid&item=1101220&pi=" & n & "&vs=list" '三民書局
+        url = "https://www.sanmin.com.tw/promote/top/?id=WBYY&vs=grid&item=1101220&pi=" & n & "&vs=list" 
+        
+        '三民書局
     
     Set objIE = New InternetExplorer
     
@@ -44,32 +53,41 @@ Sub sanmin()
         Dim objDoc As HTMLElementCollection
         Set objDoc = objIE.document
 
-        Dim BookName, Author, Price As IHTMLElement  '宣告變數指定型態
+        Dim BookName, Author, Price As IHTMLElement  
+        
+        '宣告變數指定型態
  
 
         For Each BookName In objDoc.getElementsByClassName("resultBooksInfor")
+        
         '確認書名在網頁的位置
-            Worksheets(1).Cells(row, 1) = row                                  '寫入工作表與儲存格
+        
+            Worksheets(1).Cells(row, 1) = row                                  
             Worksheets(1).Cells(row, 2) = BookName.innerText
+        '寫入工作表與儲存格
             row = row + 1
         Next
                 
         row = 1
         For Each Author In objDoc.getElementsByClassName("author")
-        '確認書名在網頁的位置
             Worksheets(1).Cells(row, 3) = Author.innerText
+        '確認作者在網頁的位置
             row = row + 1
         Next
         
         row = 1
         For Each Price In objDoc.getElementsByClassName("resultBooksLayout")
-        '確認書名在網頁的位置
+        
+        '確認價格在網頁的位置
+        
             Worksheets(1).Cells(row, 4) = Price.innerText
             row = row + 1
         
         Next
         
-        Next n
+        Next n  
+        
+        '翻頁
     
     Set objIE = Nothing
     MsgBox "Done ！"
@@ -96,21 +114,15 @@ Option Explicit
 Private objIE As InternetExplorer
 
 Sub sanmin()
-    '建立IE物件
-    Dim url, row, n   '宣告變數
+    Dim url, row, n   
     On Error Resume Next
     row = 1
     For n = 1 To 2
-
-        url = "https://www.sanmin.com.tw/promote/top/?id=WBYY&vs=grid&item=1101220&pi=" & n & "&vs=list" '三民書局
+        url = "https://www.sanmin.com.tw/promote/top/?id=WBYY&vs=grid&item=1101220&pi=" & n & "&vs=list"
     
-    Set objIE = New InternetExplorer
-    
+    Set objIE = New InternetExplorer   
         objIE.Visible = False
         objIE.Navigate2 (url)
-
-
-'等待讀取完成
 
         While objIE.readyState <> READYSTATE_COMPLETE Or objIE.Busy = True
             DoEvents
@@ -121,12 +133,15 @@ Sub sanmin()
         Dim objDoc As HTMLElementCollection
         Set objDoc = objIE.document
 
-        Dim BookName As IHTMLElement  '宣告變數指定型態
- 
+        Dim BookName As IHTMLElement  
+        
+        '宣告變數指定型態
 
         For Each BookName In objDoc.getElementsByClassName("resultBooksInfor")
+        
         '確認書名在網頁的位置
-            Worksheets(1).Cells(row, 1) = row                                  '寫入工作表與儲存格
+        
+            Worksheets(1).Cells(row, 1) = row                                  
             Worksheets(1).Cells(row, 2) = BookName.Children(0).innerText
             Worksheets(1).Cells(row, 3) = BookName.Children(1).Children(0).innerText
             Worksheets(1).Cells(row, 4) = BookName.Children(1).Children(1).innerText
@@ -135,6 +150,8 @@ Sub sanmin()
             Worksheets(1).Cells(row, 7) = BookName.Children(4).Children(0).Children(1).innerText
             Worksheets(1).Cells(row, 8) = BookName.Children(4).Children(1).innerText
             row = row + 1
+            
+            '寫入工作表與儲存格
 
         Next
         
