@@ -121,7 +121,9 @@ Sub sanmin()
             Worksheets(1).Cells(row, 3) = BookName.Children(1).Children(0).innerText
             Worksheets(1).Cells(row, 4) = BookName.Children(1).Children(1).innerText
             Worksheets(1).Cells(row, 5) = BookName.Children(2).innerText
-            Worksheets(1).Cells(row, 6) = BookName.Children(4).Children(0).innerText
+            Worksheets(1).Cells(row, 6) = BookName.Children(4).Children(0).Children(0).innerText
+            Worksheets(1).Cells(row, 7) = BookName.Children(4).Children(0).Children(1).innerText
+            Worksheets(1).Cells(row, 8) = BookName.Children(4).Children(1).innerText
             row = row + 1
 
         Next
