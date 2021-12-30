@@ -2,6 +2,7 @@
 PROPOSE : 透過Excel爬下三民書局暢銷榜的書名、作者、價格....等,並自動整理成表格
 
 前置作業 : 
+
 "檔案" → "選項" → "自訂功能區" : 勾選"開發人員" → "信任中心" → "巨集設定" : 勾選"信任存取VBA專案物件模型" → 在工具列找到"開發人員" → "Visual Basic" → 新增一個"模組"
                           
 
@@ -19,7 +20,7 @@ Private objIE As InternetExplorer
 
 Sub sanmin()
     '建立IE物件
-    Dim url, row, n   '宣告變數
+    Dim url, row, n  '宣告變數
     On Error Resume Next
     row = 1
     For n = 1 To 2
