@@ -7,6 +7,7 @@ PROPOSE : 透過Excel爬下三民書局暢銷榜的書名、作者、價格....�
                           
 
 程式碼 :
+```VBA=
 
 Option Explicit
 #If Win64 Then
@@ -131,3 +132,4 @@ Sub sanmin()
     Set objIE = Nothing
     MsgBox "Done ！"
 End Sub
+```
